@@ -18,10 +18,14 @@ else
 const IS_ABSENT=0;
 const WAGE_PER_HOUR=20;
 const TOTAL_WORKING_DAYS=20;
+const TOTAL_WORKING_HOURS=100;
 let totalEmpHours=0;
 let employeeWage=0;
-for(i=0;i<TOTAL_WORKING_DAYS;i++)
+let workingDay=0;
+//for(i=0;i<TOTAL_WORKING_DAYS;i++)
+while(workingDay<TOTAL_WORKING_DAYS && totalEmpHours<TOTAL_WORKING_HOURS )
 {
+workingDay++;
 let emp_hours= getEmpHours();
 totalEmpHours+=emp_hours;
 employeeWage= WAGE_PER_HOUR*totalEmpHours;
