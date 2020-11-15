@@ -32,7 +32,7 @@ employeeWage= WAGE_PER_HOUR*totalEmpHours;
 }
 console.log("total work hours "+totalEmpHours);
 console.log("totol emp wage "+employeeWage);
-console.log("total working days "+TOTAL_WORKING_DAYS);
+console.log("total working days "+workingDay);
 //UC3
 function getEmpHours()
 { 
