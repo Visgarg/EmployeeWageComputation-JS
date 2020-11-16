@@ -27,6 +27,7 @@ const TOTAL_WORKING_HOURS=100;
 let totalEmpHours=0;
 let employeeWage=0;
 let workingDay=0;
+let empDailyWageArray= new Array();
 //using for loop to iterate over the working days
 //for(i=0;i<TOTAL_WORKING_DAYS;i++)
 //using while loop to iterate over working days along with condition for working hours
@@ -36,11 +37,13 @@ workingDay++;
 //calling getEmpHours() function to get emp hours for full day, part time hours
 let emp_hours= getEmpHours();
 //getting total emp hours
+empDailyWageArray.push(emp_hours*WAGE_PER_HOUR);
 totalEmpHours+=emp_hours;
 //calculating total employee wage
 employeeWage= WAGE_PER_HOUR*totalEmpHours;
 }
 //printing values
+console.log(empDailyWageArray);
 console.log("total work hours "+totalEmpHours);
 console.log("totol emp wage "+employeeWage);
 console.log("total working days "+workingDay);
