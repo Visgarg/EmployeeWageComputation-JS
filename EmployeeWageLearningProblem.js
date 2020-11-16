@@ -51,6 +51,7 @@ let totalEmpHours=0;
 let employeeWage=0;
 let workingDay=0;
 let empDailyWageArray= new Array();
+let empDailyWageMap= new Map();
 //using for loop to iterate over the working days
 //for(i=0;i<TOTAL_WORKING_DAYS;i++)
 //using while loop to iterate over working days along with condition for working hours
@@ -59,8 +60,11 @@ while(workingDay<TOTAL_WORKING_DAYS && totalEmpHours<TOTAL_WORKING_HOURS)
 workingDay++;
 //calling getEmpHours() function to get emp hours for full day, part time hours
 let emp_hours= getEmpHours();
-//getting total emp hours
+//adding emp wages in array
 empDailyWageArray.push(emp_hours*WAGE_PER_HOUR);
+//adding emp wages in map
+empDailyWageMap.set(workingDay,emp_hours*WAGE_PER_HOUR);
+//getting total emp hours
 totalEmpHours+=emp_hours;
 //calculating total employee wage
 employeeWage= WAGE_PER_HOUR*totalEmpHours;
@@ -121,3 +125,12 @@ function totalDaysWorked(noOfDays,dailyWage)
     return noOfDays;
 }
 console.log("7G: The no of days employee worked: "+empDailyWageArray.reduce(totalDaysWorked,0));
+//UC8 calculating total wage using employee wages of each day in map
+let totalWageFromMap=0;
+for(let empWage of empDailyWageMap.values())
+{
+    totalWageFromMap+=empWage;
+}
+//printing map
+console.log(empDailyWageMap);
+console.log("UC8: total emp wage from map: "+ totalWageFromMap);
