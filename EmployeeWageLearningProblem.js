@@ -53,6 +53,9 @@ let workingDay=0;
 let empDailyWageArray= new Array();
 let empDailyHourMap= new Map();
 let empDailyWageMap= new Map();
+//For UC 10
+//defining array which will contain objects
+let empDailyHrsAndWageArray= new Array();
 //using for loop to iterate over the working days
 //for(i=0;i<TOTAL_WORKING_DAYS;i++)
 //using while loop to iterate over working days along with condition for working hours
@@ -67,6 +70,18 @@ empDailyWageArray.push(emp_hours*WAGE_PER_HOUR);
 empDailyWageMap.set(workingDay,emp_hours*WAGE_PER_HOUR);
 //adding emp hours in map
 empDailyHourMap.set(workingDay,emp_hours);
+//adding array with objects created in it
+empDailyHrsAndWageArray.push(
+    {
+        dayNum: workingDay,
+        dailyHours: emp_hours,
+        dailyWage: emp_hours*WAGE_PER_HOUR,
+        toString()
+        {
+            return '\nDay '+ this.dayNum+' => Working Hours is ' +this.dailyHours+' And wage earned = '+this.dailyWage
+        },
+    }
+);
 //getting total emp hours
 totalEmpHours+=emp_hours;
 //calculating total employee wage
@@ -162,3 +177,11 @@ console.log("9B Full Working Days: "+ fullWorkingDaysArray);
 console.log("9B Part time working days: "+partTimeWorkingDaysArray);
 console.log("9B Non Working Days: "+noWorkingDayArray);
 
+//UC10 Printing Object Array
+console.log("Printing Array of Objects wherer to String is used to print the objects array");
+console.log("Printing Array"+empDailyHrsAndWageArray);
+
+//UC 11A to 11D using object functions along with arrow functions
+let totalWagesUsingObjects= empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyWage>0).reduce((totalWage,dailyHrsAndWage)=>totalWage=totalWage+dailyHrsAndWage.dailyWage,0);
+let totalHoursUsingObjects= empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours>0).reduce((totalWage,dailyHrsAndWage)=>totalWage=totalWage+dailyHrsAndWage.dailyHours,0);
+console.log("UC 11A Total hours: "+ totalHoursUsingObjects+" Total Wages: "+ totalWagesUsingObjects);
