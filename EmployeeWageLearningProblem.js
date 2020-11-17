@@ -185,3 +185,14 @@ console.log("Printing Array"+empDailyHrsAndWageArray);
 let totalWagesUsingObjects= empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyWage>0).reduce((totalWage,dailyHrsAndWage)=>totalWage=totalWage+dailyHrsAndWage.dailyWage,0);
 let totalHoursUsingObjects= empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours>0).reduce((totalWage,dailyHrsAndWage)=>totalWage=totalWage+dailyHrsAndWage.dailyHours,0);
 console.log("UC 11A Total hours: "+ totalHoursUsingObjects+" Total Wages: "+ totalWagesUsingObjects);
+//UC11B
+process= require('process');
+process.stdout.write("\nUC 11B Logging full working days");
+empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==8).forEach(dailyHrsAndWage=>process.stdout.write(dailyHrsAndWage.toString()));
+//UC11C
+let partWorkingDaysArrayUsingObjectArray= empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==4).map(dailyHrsAndWage=>dailyHrsAndWage.toString());
+console.log('\n');
+console.log("\nUC 11C Part working days string: "+partWorkingDaysArrayUsingObjectArray);
+// UC 11D
+let nonWorkingDaysnum= empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==0).map(dailyHrsAndWage=>dailyHrsAndWage.dayNum);
+console.log("\nUC 11D NonWorkingDayNums: "+nonWorkingDaysnum);
