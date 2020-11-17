@@ -46,7 +46,10 @@ class EmployeePayrollData
     //adding toString() method to contain gender as well as date also
     toString()
     {
-        return "id= "+this.id+", name= "+ this.name+", salary= "+this.salary+", gender= "+this.gender+", startdate= "+ this.startDate;
+        const options= {year:'numeric',month:'long',day:'numeric'};
+        //3 Equals are used and return true when both datatype and value matches
+        const empDate= this.startDate===undefined ? "undefined": this.startDate.toLocaleDateString("en-US",options); 
+        return "id= "+this.id+", name= "+ this.name+", salary= "+this.salary+", gender= "+this.gender+", startdate= "+ empDate;
     }
 }
 //as i have defined array there and array is dynamic here, hence i am facing only 3 arguments here, other will be undefined by default in this case.
