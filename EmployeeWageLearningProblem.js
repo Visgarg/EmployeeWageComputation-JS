@@ -51,6 +51,7 @@ let totalEmpHours=0;
 let employeeWage=0;
 let workingDay=0;
 let empDailyWageArray= new Array();
+let empDailyHourMap= new Map();
 let empDailyWageMap= new Map();
 //using for loop to iterate over the working days
 //for(i=0;i<TOTAL_WORKING_DAYS;i++)
@@ -64,6 +65,8 @@ let emp_hours= getEmpHours();
 empDailyWageArray.push(emp_hours*WAGE_PER_HOUR);
 //adding emp wages in map
 empDailyWageMap.set(workingDay,emp_hours*WAGE_PER_HOUR);
+//adding emp hours in map
+empDailyHourMap.set(workingDay,emp_hours);
 //getting total emp hours
 totalEmpHours+=emp_hours;
 //calculating total employee wage
@@ -134,3 +137,28 @@ for(let empWage of empDailyWageMap.values())
 //printing map
 console.log(empDailyWageMap);
 console.log("UC8: total emp wage from map: "+ totalWageFromMap);
+//UC9 Arrow Functions
+//function for finding totals, can also be done using arrow functions also
+const findTotal= (totalVal,dailyVal)=>{
+    return totalVal+dailyVal;
+}
+//using arrows for filtering and reduce functions to calculate totalhours and total salary
+let totalHours= Array.from(empDailyHourMap.values()).filter(dailyHours=>dailyHours>0).reduce((totalHour,dailyHours)=>totalHour= totalHour+dailyHours);
+console.log("UC 9A Total Emp Hours with Arrow: "+ totalHours);
+let totalSalary=empDailyWageArray.filter(dailyWage=>dailyWage>0).reduce(findTotal,0);  
+console.log("UC 9A Total Emp wage with Arrow: "+ totalSalary);
+//calculating full working days, part time working days and no working days and adding values in array
+//calculation is done using arrow functions and foreach.
+let fullWorkingDaysArray= new Array();
+let partTimeWorkingDaysArray= new Array();
+let noWorkingDayArray= new Array();
+empDailyWageMap.forEach((value,key)=>{
+    if(value==160) fullWorkingDaysArray.push(key);
+    else if (value==80) partTimeWorkingDaysArray.push(key);
+    else noWorkingDayArray.push(key);
+});
+
+console.log("9B Full Working Days: "+ fullWorkingDaysArray);
+console.log("9B Part time working days: "+partTimeWorkingDaysArray);
+console.log("9B Non Working Days: "+noWorkingDayArray);
+
