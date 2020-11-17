@@ -35,8 +35,12 @@ class EmployeePayrollData
     get name(){ return this._name;}
     set name(name)
     {
-        console.log("Setting: "+name);
-        this._name= name;
+        //console.log("Setting: "+name);
+        //this._name= name;
+        let nameRegex= RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if(nameRegex.test(name))
+            this._name=name;
+        else throw 'Name is Incorrect!';
     }
     //method 
     //toString()
@@ -57,8 +61,15 @@ let employeePayrollData= new  EmployeePayrollData(1,"Mark",30000);
 console.log(employeePayrollData.toString());
 //changing data directly
 employeePayrollData.id=0;
-employeePayrollData.name= "Jeff";
-console.log(employeePayrollData.toString());
+try
+{
+    employeePayrollData.name= "jeff";
+    console.log(employeePayrollData.toString());
+}
+catch(e)
+{
+    console.error(e);
+}
 
 //setting up new object
 let newEmployeePayrollData= new EmployeePayrollData(1,"Teresa",25000,"F",new Date());
