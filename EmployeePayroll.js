@@ -7,9 +7,9 @@ class EmployeePayrollData
     //if variable is defined here, and constructor is called, even if property for the same is defined, it is not going there
     //it is directly assigning value to name as variable, not as property
     //name;
-    salary;
-    gender;
-    startDate;
+    //salary;
+    //gender;
+    //startDate;
 
     //constructor
     //even if name is not defined in property before, but if used in constructor
@@ -42,6 +42,40 @@ class EmployeePayrollData
             this._name=name;
         else throw 'Name is Incorrect!';
     }
+    //getter setter for id
+    get id(){return this._id}
+    set id(id)
+    {
+        let idRegex= RegExp('^[1-9]+$');
+        if(idRegex.test(id))
+            this._id= id;
+        else throw 'ID is incorrect!';
+    }
+    //getter setter for salary along with regular expression
+    /*get salary(){return this._salary;}
+    set salary(salary1)
+    {
+        let salaryRegex= RegExp('^[1-9]{1,}$');
+        if(salaryRegex.test(salary1))
+            this._salary= salary1;
+        else throw 'salary is not valid';
+    }*/
+    get gender(){return this._gender;}
+    set gender(gender1)
+    {
+        let genderRegex= RegExp('^(F|M)$');
+        if(genderRegex.test(gender1))
+            this._gender= gender1;
+        else throw  'invalid gender';
+    }
+    get startDate(){return this._startDate;}
+    set startDate(startDate)
+    {
+        let currentDate= new Date();
+        if(currentDate- startDate>=0)
+            this._startDate= startDate;
+        else throw  'invalid date';
+    }
     //method 
     //toString()
     //{
@@ -57,13 +91,15 @@ class EmployeePayrollData
     }
 }
 //as i have defined array there and array is dynamic here, hence i am facing only 3 arguments here, other will be undefined by default in this case.
-let employeePayrollData= new  EmployeePayrollData(1,"Mark",30000);
+let employeePayrollData= new  EmployeePayrollData(1,"Mark",30000,'M',new Date());
 console.log(employeePayrollData.toString());
 //changing data directly
-employeePayrollData.id=0;
 try
 {
-    employeePayrollData.name= "jeff";
+    employeePayrollData.id=0;
+    employeePayrollData.name= "Jeff";
+    employeePayrollData.salary=0;
+    employeePayrollData.gender='a';
     console.log(employeePayrollData.toString());
 }
 catch(e)
