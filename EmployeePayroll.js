@@ -1,25 +1,6 @@
 class EmployeePayrollData
 {
-    //property
-    //even if removing variable id from here, and using it in constructor does not impact
-    //automatically variable is created when used in constructor
-    //id;
-    //if variable is defined here, and constructor is called, even if property for the same is defined, it is not going there
-    //it is directly assigning value to name as variable, not as property
-    //name;
-    //salary;
-    //gender;
-    //startDate;
-
-    //constructor
-    //even if name is not defined in property before, but if used in constructor
-    //js will automatically consider it as a property
-    /*constructor(id,name,salary)
-    {
-        this.id=id;
-        this.name= name;
-        this.salary= salary;
-    }*/
+   
     //using spread method of array to define constructor
     //constructor can only be one in javascript, hence commenting out 1st constructor
     constructor (...params)
@@ -55,11 +36,11 @@ class EmployeePayrollData
     }
     //getter setter for salary along with regular expression
     get salary(){return this._salary;}
-    set salary(salary1)
+    set salary(salary)
     {
         let salaryRegex= RegExp('^[1-9]{1}[0-9]*$');
-        if(salaryRegex.test(salary1))
-            this._salary= salary1;
+        if(salaryRegex.test(salary))
+            this._salary= salary;
         else throw 'salary is not valid';
     }
     //getter setter for gender
@@ -80,6 +61,7 @@ class EmployeePayrollData
             this._startDate= startDate;
         else throw  'invalid date';
     }
+    //getter and setter for zip
     get zip(){return this._zip;}
     set zip(zip)
     {
