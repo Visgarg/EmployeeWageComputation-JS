@@ -196,3 +196,14 @@ console.log("\nUC 11C Part working days string: "+partWorkingDaysArrayUsingObjec
 // UC 11D
 let nonWorkingDaysnum= empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==0).map(dailyHrsAndWage=>dailyHrsAndWage.dayNum);
 console.log("\nUC 11D NonWorkingDayNums: "+nonWorkingDaysnum);
+//UC 7B using object array
+let dayAndDailyWageArray= empDailyHrsAndWageArray.map(dailyHrsAndWage=>dailyHrsAndWage.dayNum+"=>"+dailyHrsAndWage.dailyWage);
+console.log("\nUC 7B using object Array: "+dayAndDailyWageArray);
+//UC 7D using object array
+console.log("7D: 1st time employee worked full time"+empDailyHrsAndWageArray.find(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==8).toString());
+//UC 7E using object array
+console.log("7E: Checking if all the employee filtered are full time: "+ empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyHours==8).every(dailyHrsAndWage=>dailyHrsAndWage.dailyWage==160));
+//UC 7F using object array
+console.log("7F: Checking if there is any part time for employee:"+empDailyHrsAndWageArray.some(dailyHrsAndWage=>dailyHrsAndWage.dailyWage==80));
+//Uc 7G using object array
+console.log("7G No. of days employee worked: "+empDailyHrsAndWageArray.filter(dailyHrsAndWage=>dailyHrsAndWage.dailyWage>0).length);
