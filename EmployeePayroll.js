@@ -29,6 +29,8 @@ class EmployeePayrollData
         this.salary= params[2];
         this.gender= params[3];
         this.startDate= params[4];
+        this.zip= params[5];
+        this.email= params[6];
     }
     //getter and setter method
     //for defining variable inside a getter setter or properties, syntax is to use underscore and then name of variable.
@@ -46,20 +48,21 @@ class EmployeePayrollData
     get id(){return this._id}
     set id(id)
     {
-        let idRegex= RegExp('^[1-9]+$');
+        let idRegex= RegExp('^[1-9]{1}[0-9]*$');
         if(idRegex.test(id))
             this._id= id;
         else throw 'ID is incorrect!';
     }
     //getter setter for salary along with regular expression
-    /*get salary(){return this._salary;}
+    get salary(){return this._salary;}
     set salary(salary1)
     {
-        let salaryRegex= RegExp('^[1-9]{1,}$');
+        let salaryRegex= RegExp('^[1-9]{1}[0-9]*$');
         if(salaryRegex.test(salary1))
             this._salary= salary1;
         else throw 'salary is not valid';
-    }*/
+    }
+    //getter setter for gender
     get gender(){return this._gender;}
     set gender(gender1)
     {
@@ -68,6 +71,7 @@ class EmployeePayrollData
             this._gender= gender1;
         else throw  'invalid gender';
     }
+    //getter sette for date
     get startDate(){return this._startDate;}
     set startDate(startDate)
     {
@@ -76,38 +80,50 @@ class EmployeePayrollData
             this._startDate= startDate;
         else throw  'invalid date';
     }
-    //method 
-    //toString()
-    //{
-      //  return "id= "+this.id+", name= "+ this.name+", salary= "+this.salary;
-    //}
-    //adding toString() method to contain gender as well as date also
+    get zip(){return this._zip;}
+    set zip(zip)
+    {
+        let zipRegex= RegExp('^[1-9]{1}[0-9]{2}[ ]?[0-9]{3}$');
+        if(zipRegex.test(zip))
+            this._zip= zip;
+        else throw "Incorrect zip";
+    }
+    //getter and setter for email
+    get email(){return this._email;}
+    set email(email)
+    {
+        let emailRegex= RegExp('^[a-z]{1}[a-z0-9]{2,}([._+-]?[a-z0-9]+)?[@]{1}[a-z1-9]+[.]{1}(co|net|com|gov)([.]{1}[a-z]{2,3})?$')
+        if(emailRegex.test(email))
+            this._email= email;
+        else throw "Invalid Email";
+    }
     toString()
     {
         const options= {year:'numeric',month:'long',day:'numeric'};
         //3 Equals are used and return true when both datatype and value matches
         const empDate= this.startDate===undefined ? "undefined": this.startDate.toLocaleDateString("en-US",options); 
-        return "id= "+this.id+", name= "+ this.name+", salary= "+this.salary+", gender= "+this.gender+", startdate= "+ empDate;
+        return "id= "+this.id+", name= "+ this.name+", salary= "+this.salary+", gender= "+this.gender+", startdate= "+ empDate+", zip= "+this.zip+", email= "+this.email;
     }
 }
-//as i have defined array there and array is dynamic here, hence i am facing only 3 arguments here, other will be undefined by default in this case.
-let employeePayrollData= new  EmployeePayrollData(1,"Mark",30000,'M',new Date());
-console.log(employeePayrollData.toString());
+
 //changing data directly
 try
 {
-    employeePayrollData.id=0;
-    employeePayrollData.name= "Jeff";
-    employeePayrollData.salary=0;
-    employeePayrollData.gender='a';
+    //as i have defined array there and array is dynamic here, hence i am facing only 3 arguments here, other will be undefined by default in this case.
+    let employeePayrollData= new  EmployeePayrollData(1,"Mark",30000,'M','16/11/2020',343434,'vishal.garg@capgemini.com');
     console.log(employeePayrollData.toString());
+    employeePayrollData.id=1;
+    employeePayrollData.name= "Jeff";
+    employeePayrollData.salary=10;
+    employeePayrollData.gender='F';
+    console.log(employeePayrollData.toString());
+    //setting up new object
+    let newEmployeePayrollData= new EmployeePayrollData(1,"Teresa",25000,"F",new Date(),222222,'vishl.garggoogle.com');
+    //as new date() is used, it will display all the values like time upto seconds and weekend, if i need to print only year, month and day, i have to change some things in toString() method.
+    console.log(newEmployeePayrollData.toString());
 }
 catch(e)
 {
     console.error(e);
 }
 
-//setting up new object
-let newEmployeePayrollData= new EmployeePayrollData(1,"Teresa",25000,"F",new Date());
-//as new date() is used, it will display all the values like time upto seconds and weekend, if i need to print only year, month and day, i have to change some things in toString() method.
-console.log(newEmployeePayrollData.toString());
